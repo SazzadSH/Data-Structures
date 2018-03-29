@@ -51,9 +51,6 @@ bool Stack::isEmpty()
 int main()
 {
     struct Stack s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
 
     cout << s.pop() << " Popped from stack\n";
 
