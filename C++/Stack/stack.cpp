@@ -6,22 +6,110 @@ using namespace std;
 
 class stack
 {
-    static int maxSize;
+    int stackAra[defaultSize];
+    int top;
+
+public:
     stack()
     {
-        maxSize = defaultSize;
+        top = -1;
     }
 
-    stack(int customSize)
+    void Push(int data)
     {
-        maxSize = customSize;
+        if(this->isFull())
+        {
+            cout << "Stack Overflow!" << endl;
+        }
+        else
+        {
+            stackAra[++top] = data;
+        }
     }
 
-    int stackAra[defaultSize];
+    int Pop()
+    {
+        if(this->isEmpty())
+        {
+            cout << "Stack Underflow!" << endl;
+        }
+        else
+        {
+            return stackAra[top--];
+        }
+    }
+
+    int Top()
+    {
+        if(this->isEmpty())
+        {
+            cout << "Stack Underflow!" << endl;
+        }
+        else
+        {
+            return stackAra[top];
+        }
+    }
+
+    bool isEmpty()
+    {
+        if(top < 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    bool isFull()
+    {
+        if(top >= defaultSize-1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 };
 
 int main()
 {
-   // int ara[maxSize];
+    stack test;
+
+    for(int i = 1; i <= 20; i++)
+    {
+        test.Push((i*3)+4);
+    }
+
+    for(int i = 1; i <= 20; i++)
+    {
+        cout << test.Pop() << endl;
+    }
+
+    test.Pop();
+    test.Top();
+
+    if(test.isEmpty())
+    {
+        cout << "Stack Empty" << endl;
+    }
+
+    for(int i = 1; i <= 100; i++)
+    {
+        test.Push(i);
+    }
+
+    test.Push(10);
+    cout << test.Top() << endl;
+
+    if(test.isFull())
+    {
+        cout << "Stack Full" << endl;
+    }
+
     return 0;
 }
