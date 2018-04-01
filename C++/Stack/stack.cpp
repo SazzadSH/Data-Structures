@@ -51,6 +51,11 @@ public:
         }
     }
 
+    int size()
+    {
+        return (top + 1);
+    }
+
     bool isEmpty()
     {
         if(top < 0)
