@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define queueSize 10;
+#define queueSize 10
 
 class Queue
 {
@@ -24,9 +24,48 @@ public:
         }
         else
         {
-            if(rear == (queueSize-1))
+            if(rear == queueSize)
             {
                 rear = -1;
+
+                this->Enqueue(data);
+            }
+            else
+            {
+                if(rear == -1)
+                {
+                    rear = 0;
+                }
+
+                queueArray[rear] = data;
+                rear++;
+            }
+        }
+    }
+
+    int Dequeue()
+    {
+        if(isEmpty())
+        {
+            cout << "Queue is Empty!" << endl;
+        }
+        else
+        {
+            if(front == queueSize)
+            {
+                front = -1;
+
+                this->Dequeue();
+            }
+            else
+            {
+                if(front == -1)
+                {
+                    front = 0;
+                }
+
+                queueArray[front] = NULL;
+                front++;
             }
         }
     }
@@ -45,7 +84,7 @@ public:
 
     bool isFull()
     {
-        if(((rear == queueSize-1) && (front == -1)) || (rear == (front-1)))
+        if(rear == (front - 1))
         {
             return 1;
         }
@@ -58,5 +97,15 @@ public:
 
 int main()
 {
+    Queue test;
 
+    for(int i = 0; i < 10; i++)
+    {
+        test.Enqueue((i+3)*4);
+    }
+
+    for(int i = 0; i < 10; i++)
+    {
+       cout << test.Dequeue() << endl;
+    }
 }
