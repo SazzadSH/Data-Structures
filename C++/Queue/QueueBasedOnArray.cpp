@@ -64,8 +64,10 @@ public:
                     front = 0;
                 }
 
+                int data = queueArray[front];
                 queueArray[front] = NULL;
                 front++;
+                return data;
             }
         }
     }
