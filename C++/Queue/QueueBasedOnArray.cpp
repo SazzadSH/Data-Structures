@@ -8,12 +8,13 @@ class Queue
 {
 public:
     int queueArray[queueSize];
-    int front, rear;
+    int front, rear, dataCount;
 
     Queue()
     {
         front = 0;
         rear = -1;
+        dataCount = 0;
     }
 
     void Enqueue(int data)
@@ -26,32 +27,40 @@ public:
         {
             rear++;
             queueArray[rear] = data;
+            dataCount++;
+
+            if(rear == (queueSize -1))
+            {
+                rear = -1;
+            }
         }
     }
 
-    int Dequeue()
+    int Dequeu()
     {
-        if(isEmpty())
+        if(this->isEmpty())
         {
             cout << "Queue is Empty!" << endl;
         }
         else
         {
             int data = queueArray[front];
+            queueArray[front] = NULL;
             front++;
+            dataCount--;
+
+            if(front == queueSize)
+            {
+                front = 0;
+            }
 
             return data;
         }
     }
 
-    bool isEmpty()
+    bool isFull()
     {
-        if(front == queueSize)
-        {
-            front = 0;
-        }
-
-        if(rear == (front - 1))
+        if(dataCount == queueSize)
         {
             return 1;
         }
@@ -61,14 +70,9 @@ public:
         }
     }
 
-    bool isFull()
+    bool isEmpty()
     {
-        if(rear == (queueSize - 1))
-        {
-            rear = -1;
-        }
-
-        if(rear == (front - 1))
+        if(dataCount == 0)
         {
             return 1;
         }
@@ -79,14 +83,25 @@ public:
     }
 };
 
+
 int main()
 {
     Queue test;
 
     for(int i = 0; i < 10; i++)
     {
-        test.Enqueue((i+3)*4);
+        test.Enqueue(100+i);
     }
+
+    test.Dequeu();
+    test.Dequeu();
+    test.Dequeu();
+    test.Dequeu();
+
+    test.Enqueue(90);
+    test.Enqueue(91);
+    test.Enqueue(92);
+    test.Enqueue(93);
 
     for(int i = 0; i < 10; i++)
     {
@@ -97,6 +112,7 @@ int main()
 
     for(int i = 0; i < 10; i++)
     {
-        cout << test.Dequeue() << endl;
+        cout << test.Dequeu() << endl;
     }
+    return 0;
 }
