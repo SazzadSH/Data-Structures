@@ -6,10 +6,11 @@ using namespace std;
 
 class Queue
 {
-public:
+private:
     int queueArray[queueSize];
     int front, rear, dataCount;
 
+public:
     Queue()
     {
         front = 0;
@@ -36,7 +37,7 @@ public:
         }
     }
 
-    int Dequeu()
+    int Dequeue()
     {
         if(this->isEmpty())
         {
@@ -58,6 +59,18 @@ public:
         }
     }
 
+    int Front()
+    {
+        if(this->isEmpty())
+        {
+            cout << "Queue is Empty!" << endl;
+        }
+        else
+        {
+            return queueArray[front];
+        }
+    }
+
     bool isFull()
     {
         if(dataCount == queueSize)
@@ -68,6 +81,11 @@ public:
         {
             return 0;
         }
+    }
+
+    int Size()
+    {
+        return dataCount;
     }
 
     bool isEmpty()
@@ -88,31 +106,18 @@ int main()
 {
     Queue test;
 
-    for(int i = 0; i < 10; i++)
-    {
-        test.Enqueue(100+i);
-    }
+    test.Enqueue(100);
+    test.Enqueue(110);
+    test.Enqueue(250);
+    test.Enqueue(500);
+    test.Enqueue(95);
 
-    test.Dequeu();
-    test.Dequeu();
-    test.Dequeu();
-    test.Dequeu();
+    cout << test.Dequeue() << endl;
+    cout << test.Dequeue() << endl;
 
-    test.Enqueue(90);
-    test.Enqueue(91);
-    test.Enqueue(92);
-    test.Enqueue(93);
+    test.Enqueue(402);
 
-    for(int i = 0; i < 10; i++)
-    {
-        cout << test.queueArray[i] << endl;
-    }
-
-    cout << endl;
-
-    for(int i = 0; i < 10; i++)
-    {
-        cout << test.Dequeu() << endl;
-    }
+    cout << test.Front() << endl;
+    cout << test.Size() << endl;
     return 0;
 }
