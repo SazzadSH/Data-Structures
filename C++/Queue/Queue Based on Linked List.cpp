@@ -1,3 +1,9 @@
+/*
+Queue Data Structure based on Linked List
+Program author: Sazzad Hossen
+Github: https://github.com/SazzadSH
+*/
+
 #include <iostream>
 
 using namespace std;
