@@ -1,3 +1,10 @@
+/*
+Queue Data Structure based on Array
+Program author: Sazzad Hossen
+Github: https://github.com/SazzadSH
+*/
+
+
 #include <iostream>
 
 using namespace std;
